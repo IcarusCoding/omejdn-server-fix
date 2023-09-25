@@ -186,7 +186,7 @@ def filter_scopes(resource_owner, client, scopes)
       true
     elsif s.include? ':'
       key, value = s.split(':', 2)
-      av = resource_owner.attributes[key]
+      av = resource_owner.attributes.find { |hash| hash['key'] == key }
       av = { 'value' => av } unless av.instance_of?(Hash)
       av && av['value'] == value
     else
